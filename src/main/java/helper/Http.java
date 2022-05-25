@@ -15,6 +15,9 @@ import java.util.*;
 public class Http {
 
     public String appid;
+    /**
+     * 秘钥
+     */
     public String secret;
 
     public Map<String, String> headers;
@@ -33,7 +36,13 @@ public class Http {
     /**
      * 签名
      *
-     * @param data
+     * @param data 所有请求参数加上appid、timestamp
+     *             {
+     *                 "param1": value1,
+     *                 "param2": value2,
+     *                 "appid": 3453127593,
+     *                 "timestamp": 1653440794
+     *             }
      * @return
      */
     public String sign(final Map<String, Object> data) {
@@ -135,7 +144,7 @@ public class Http {
     }
 
     /**
-     * 向指定 URL 发送JSON方法的请求
+     * 向指定 URL 发送JSON请求
      *
      * @param url        发送请求的 URL
      * @param parameters
@@ -143,7 +152,6 @@ public class Http {
      */
     public String json(String url, Map<String, Object> parameters) {
         String json = "";
-        System.out.println();
         if (parameters != null) {
             json = mapToJson(parameters);
         }
